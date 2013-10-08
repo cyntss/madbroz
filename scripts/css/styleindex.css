@@ -1,0 +1,49 @@
+@charset "utf-8";
+* { margin:0; padding:0;}
+Body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#666;
+	background: url(../../assests/images/bg.jpg) center top no-repeat #333333 fixed;
+	margin:0px;
+	padding:0
+}
+/***** clearfix *****/
+.clear {clear: both;height: 0;line-height: 0;}
+.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clearfix {display: inline-block;}
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+.clearfix {height: 1%;}
+.clearfix {display: block;}
+/***** clearfix *****/
+
+
+/* TAGS Y CLASES GRALES
+----------------------------*/
+A:link{
+FONT-WEIGHT: normal;
+text-decoration: none; 
+COLOR: #444;
+}
+A:hover{
+FONT-WEIGHT: normal;
+text-decoration: none; 
+COLOR: #004a60;
+}
+A:active{
+FONT-WEIGHT: normal;
+text-decoration: none; 
+COLOR: #444;
+}
+A:visited{
+FONT-WEIGHT: normal;
+text-decoration: none; 
+COLOR: #444;
+}
+a img { border:0 none;}
+h1 { margin:0px 0 20px 0; font-weight:400; font-size:28px; letter-spacing:-1px; color:#038cb6}
+h1 .blanco { margin:0; padding:0; font-weight:400; font-size:22px; letter-spacing:-1px; color:#fff}
+h2 { margin:8px 0; font-size:16px; color:#038cb6 }
+h3 { margin:4px 0; font-size:15px;color:#038cb6 }
+h4 { margin:4px 0; font-size:13px;color:#038cb6 }
