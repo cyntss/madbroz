@@ -1,4 +1,8 @@
 /* Main styles in this sheet */
+*{
+	margin: 0;
+	padding: 0
+}
 body{
 	font-family: @arial;
 	font-size: @regular-size;
@@ -16,11 +20,16 @@ body, html{
 	height: 100%;
 	margin-bottom: -(@footer-height);
 }
+.container{
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto
+}
 .push{
 	height: @footer-height;
 }
 footer{
-	background: #f00;
+	background: @gray-dark;
 	width: 100%;
 	height: @footer-height;
 }
@@ -37,7 +46,7 @@ nav{
 	height: 3em;
 }
 h1, h2, h3, h4, h5, h6{
-	.Titles-thin;
+	.Titles-extrathin;
 }
 h1{
 	font-size: @h1-size;
@@ -56,4 +65,7 @@ h5{
 }
 h6{
 	font-size: @h6-size;
+}
+article{
+	padding: @articles-paddings;
 }
