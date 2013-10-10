@@ -10,16 +10,68 @@
 	color: @white;
 }
 
-#game-bg .col-2{
+#game-bg .col-50{
 	margin-top: 10em;
 	padding-left: 5em;
 	padding-right: 5em;
 	box-sizing: border-box; 
 }
-#game-bg .col-2 img[src*="logo-index.png"]{
+#game-bg .col-50 img[src*="logo-index.png"]{
 	padding-top: 5em
 }
 #game-bg hr{
-	margin: 2em 0;
+	margin: 2em 0 1em;
 	background: @gray-light;
+}
+#game-bg .facebook-signup{
+	background: @facebook;
+	&:hover{
+		background: darken(@facebook, 10%);
+	}
+}
+#game-bg a{
+	text-decoration: none
+}
+.icon-1-5x{
+	font-size: 1.5em
+}
+article img[src*="how-to-index.png"]{
+	margin-top: 6em;
+}
+.col-70.title-app{
+	padding-top: 6em;
+	padding-left: 5em
+}
+.col-70.title-app h6:nth-child(3){
+	margin-top: 1em
+}
+footer a.facebook{
+	background: @social-facebook-url no-repeat 0 0;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	display: inline-block;
+	&:hover{
+		background: @social-facebook-url no-repeat 0 -32px ;
+	}
+}
+footer a.twitter{
+	background: @social-twitter-url no-repeat 0 0;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	display: inline-block;
+	&:hover{
+		background: @social-twitter-url no-repeat 0 -32px ;
+	}
+}
+footer a.gplus{
+	background: @social-gplus-url no-repeat 0 0;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+	display: inline-block;
+	&:hover{
+		background: @social-gplus-url no-repeat 0 -32px ;
+	}
 }

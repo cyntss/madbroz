@@ -32,6 +32,9 @@ footer{
 	background: @gray-dark;
 	width: 100%;
 	height: @footer-height;
+	color: @white;
+	padding-top: 1em;
+	padding-bottom: .6em
 }
 footer, .push {
 	clear: both;
@@ -68,10 +71,24 @@ h6{
 }
 article{
 	padding: @articles-paddings;
+	background: @article-bg;
+	border-bottom: 1px solid lighten(@gray, 60%);
 }
 hr{
 	margin: 5em 0;
 	border: 0;
 	height: 1px;
 	background: @gray;
+}
+a{
+	color: @white;
+	&:hover{
+		color: @call-to-action;
+	}
+}
+.text-left{
+	text-align: left;
+}
+.text-right{
+	text-align: right
 }

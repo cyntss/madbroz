@@ -1,19 +1,48 @@
 /* Grids */
-.col-2,
-.col-3,
-.col-4{
+.col-10,
+.col-20,
+.col-30,
+.col-40,
+.col-50,
+.col-60,
+.col-70,
+.col-80,
+.col-90{
 	display: inline-block;
 	vertical-align: top;
 	margin-right: auto;
 	margin-left: auto;
-	height: 100% !important
+	height: 100% !important;
+	box-sizing: border-box;
+	padding-left: 1em;
+	padding-right: 1em
 }
-.col-2{
-	width: 49%;
+
+/* Grids different sizes represented with % */
+.col-10{
+	width: percentage((1 / @grid-columns)-0.01);
 }
-.col-3{
-	width: 33%;
+.col-20{
+	width: percentage((2 / @grid-columns)-0.01);
 }
-.col-4{
-	width: 24%;
+.col-30{
+	width: percentage((3 / @grid-columns)-0.01);
+}
+.col-40{
+	width: percentage((4 / @grid-columns)-0.01);
+}
+.col-50{
+	width: percentage((5 / @grid-columns)-0.01);
+}
+.col-60{
+	width: percentage((6 / @grid-columns)-0.01);
+}
+.col-70{
+	width: percentage((7 / @grid-columns)-0.01);
+}
+.col-80{
+	width: percentage((8 / @grid-columns)-0.01);
+}
+.col-90{
+	width: percentage((9 / @grid-columns)-0.01);
 }
