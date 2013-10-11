@@ -15,72 +15,54 @@
 
 <body>
 	<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '209428232561587', // App ID
-    channelUrl : '//WWW.MadBroz.COM/channel.html', // Channel File
-    status     : true, // check login status
-    cookie     : true, // enable cookies to allow the server to access the session
-    xfbml      : true  // parse XFBML
-  });
+    <script src="http://connect.facebook.net/ja_JP/all.js"></script>
+    <script>
+      // initialize the library with the API key
+      FB.init({ apiKey: '209428232561587' });
 
+      // fetch the status on load
+      FB.getLoginStatus(handleSessionResponse);
 
-  // Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
-  // for any authentication related change, such as login, logout or session refresh. This means that
-  // whenever someone who was previously logged out tries to log in again, the correct case below 
-  // will be handled. 
-  FB.Event.subscribe('auth.authResponseChange', function(response) {
-    // Here we specify what we do with the response anytime this event occurs. 
-    if (response.status === 'connected') {
-      // The response object is returned with a status field that lets the app know the current
-      // login status of the person. In this case, we're handling the situation where they 
-      // have logged in to the app.
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      // In this case, the person is logged into Facebook, but not into the app, so we call
-      // FB.login() to prompt them to do so. 
-      // In real-life usage, you wouldn't want to immediately prompt someone to login 
-      // like this, for two reasons:
-      // (1) JavaScript created popup windows are blocked by most browsers unless they 
-      // result from direct interaction from people using the app (such as a mouse click)
-      // (2) it is a bad experience to be continually prompted to login upon page load.
-      FB.login();
-    } else {
-      // In this case, the person is not logged into Facebook, so we call the login() 
-      // function to prompt them to do so. Note that at this stage there is no indication
-      // of whether they are logged into the app. If they aren't then they'll see the Login
-      // dialog right after they log in to Facebook. 
-      // The same caveats as above apply to the FB.login() call here.
-      FB.login();
-    }
-  });
-  };
+      $('#login').bind('click', function() {
+        FB.login(handleSessionResponse);
+      });
 
-  // Load the SDK asynchronously
-  (function(d){
-   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement('script'); js.id = id; js.async = true;
-   js.src = "//connect.facebook.net/en_US/all.js";
-   ref.parentNode.insertBefore(js, ref);
-  }(document));
+      $('#logout').bind('click', function() {
+        FB.logout(handleSessionResponse);
+      });
 
-  // Here we run a very simple test of the Graph API after login is successful. 
-  // This testAPI() function is only called in those cases. 
-  function testAPI() {
-    FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
-    });
-  }
-</script>
+      $('#disconnect').bind('click', function() {
+        FB.api({ method: 'Auth.revokeAuthorization' }, function(response) {
+          clearDisplay();
+        });
+      });
 
-<!--
-  Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-  present a graphical Login button that triggers the FB.login() function when clicked.
+      // no user, clear display
+      function clearDisplay() {
+        $('#user-info').hide('fast');
+      }
 
-  Learn more about options for the login button plugin:
-  /docs/reference/plugins/login/ -->
+      // handle a session response from any of the auth related calls
+      function handleSessionResponse(response) {
+        // if we dont have a session, just hide the user info
+        if (!response.session) {
+          clearDisplay();
+          return;
+        }
+
+        // if we have a session, query for the user's profile picture and name
+        FB.api(
+          {
+            method: 'fql.query',
+            query: 'SELECT name, pic FROM profile WHERE id=' + FB.getSession().uid
+          },
+          function(response) {
+            var user = response[0];
+            $('#user-info').html('<img src="' + user.pic + '">' + user.name).show('fast');
+          }
+        );
+      }
+    </script>
 
 	<div class="wrap">
 		<section id="home">
@@ -90,14 +72,20 @@
 					<div class="col-50">
 						<img src="assets/images/logo-index.png"/>
 					</div>
-					<div class="col-50">
+					<div class="col-50" id="loginform">
 						<form>
 							<input type="text" id="email" name="email" placeholder="Email"/>
 							<input type="password" id="password" name="password" placeholder="Password"/>
 							<button>Sign Up</button>
+							<div>
+						      <button id="login">Login</button>
+						      <button id="logout">Logout</button>
+						      <button id="disconnect">Disconnect</button>
+						    </div>
+
 						</form>
 						<hr />
-						<div class="fb-login-button" data-perms="email,user_checkins"><i class="icon-facebook icon-1-5x pull-left"></i> Sign in with Facebook</div>
+						<div class="fb-login-button" data-perms="email, user_birthday"><i class="icon-facebook icon-1-5x pull-left"></i> Sign in with Facebook</div>
 						<hr />
 						<a href="#" class="pull-left"><h5>I want an account</h5></a>
 					</div>
