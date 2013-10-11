@@ -69,7 +69,6 @@
   // Here we run a very simple test of the Graph API after login is successful. 
   // This testAPI() function is only called in those cases. 
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Good to see you, ' + response.name + '.');
     });
@@ -83,7 +82,6 @@
   Learn more about options for the login button plugin:
   /docs/reference/plugins/login/ -->
 
-<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
 	<div class="wrap">
 		<section id="home">
 			<article id="game-bg" class="text-centered">
@@ -99,7 +97,7 @@
 							<button>Sign Up</button>
 						</form>
 						<hr />
-						<button class="fb-login-button facebook-signup"><i class="icon-facebook icon-1-5x pull-left"></i> Sign in with Facebook</button>
+						<button class="fb-login-button facebook-signup" data-perms="email,user_checkins"><i class="icon-facebook icon-1-5x pull-left"></i> Sign in with Facebook</button>
 						<hr />
 						<a href="#" class="pull-left"><h5>I want an account</h5></a>
 					</div>
